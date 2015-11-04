@@ -23,10 +23,17 @@ class MasterController extends \Phalcon\Mvc\Controller
 
 	 	$this->assets
 			->addCss('css/bootstrap/bootstrap.min.css')
+			->addCss('css/summernote.css')
+			->addCss('css/codemirror/codemirror.css')
+			->addCss('css/codemirror/monokai.css')
+			->addCss('css/font-awesome.min.css')
 			->addCss('css/style.css');
 		$this->assets
 			->addJs('js/jquery/jquery-2.1.4.min.js')
 			->addJs('js/bootstrap/bootstrap.min.js')
+			->addJs('js/codemirror/lib/codemirror.js')
+			->addJs('js/codemirror/mode/xml/xml.js')
+			->addJs('js/summernote.min.js')
 			->addJs('js/script.js');
 
 		foreach ($this->request->get() as $key => $value) {
@@ -39,12 +46,10 @@ class MasterController extends \Phalcon\Mvc\Controller
 
 		if(!isset($this->params->page)){
 			$this->params->page = 1;
-			$this->params->prev = false;
-		}else{
-			$this->params->prev = $this->params->page-1;
 		}
 		$this->params->next = $this->params->page+1;
 
+		$this->view->params = $this->params;
 
 		$this->auth = $this->view->auth = $this->session->get('auth');
 

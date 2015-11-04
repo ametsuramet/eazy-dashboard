@@ -61,7 +61,7 @@ class SessionController extends \Phalcon\Mvc\Controller
 	                // Forward to the 'invoices' controller if the user is valid
 	                return $this->dispatcher->forward(
 	                    array(
-	                        'controller' => 'dashboard',
+	                        'controller' => 'index',
 	                        'action'     => 'index'
 	                    )
 	                );

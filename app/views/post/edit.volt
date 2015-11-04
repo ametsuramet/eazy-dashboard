@@ -9,6 +9,12 @@
 	</div>
 
 	
+	<div class="form-group">
+		<label for="">Descritpion</label>
+		{{ text_area("title", "class": "form-control summernote", "value" : data.description) }}
+	</div>
+
+	
 		
 <!--  -->
     {{ submit_button('Send') }}

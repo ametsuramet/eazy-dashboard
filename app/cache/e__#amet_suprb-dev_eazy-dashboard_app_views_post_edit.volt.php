@@ -9,6 +9,12 @@
 	</div>
 
 	
+	<div class="form-group">
+		<label for="">Descritpion</label>
+		<?php echo $this->tag->textArea(array('title', 'class' => 'form-control summernote', 'value' => $data->description)); ?>
+	</div>
+
+	
 		
 <!--  -->
     <?php echo $this->tag->submitButton(array('Send')); ?>

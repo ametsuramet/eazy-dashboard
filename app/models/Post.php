@@ -507,6 +507,8 @@ class Post extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+  
+   
 
     /**
      * Independent Column Mapping.

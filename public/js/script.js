@@ -8,3 +8,17 @@ var confirm_delete = function(){
 		return false
 	}
 }
+
+$('.summernote').summernote({
+	height: 690,
+	focus: true,
+	// prettifyHtml: false,
+	codemirror: {
+			theme: 'monokai',
+			htmlMode: true,
+			lineNumbers: true,
+			lineWrapping: true,
+			mode: 'text/html',
+			matchBrackets: true
+        }
+});

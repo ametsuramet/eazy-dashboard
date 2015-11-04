@@ -8,10 +8,9 @@
 		</tr>
 	</thead>
 	<tbody>
-			
-		{% for index,item in data.post %}
+		{% for index,item in page.items %}
 		<tr>
-			<td>{{data.params.prev*data.params.limit+index+1}}</td>
+			<td>{{(page.current-1)*params.limit+index+1}}</td>
 			<td>{{item.title}}</td>
 			<td>{{item.PostCategory.title}}</td>
 			<td><small>{{ link_to('post/edit?id='~item.id,'Edit') }} | {{ link_to('post/delete?id='~item.id,'Delete','onclick' : 'return confirm_delete()') }} </small></td>
@@ -20,15 +19,12 @@
 	</tbody>
 </table>
 <ul class="pager">
-{% if data.params.prev is not "0" %}
-  <li><a href="?page={{data.params.prev}}">Previous</a></li>
-  {% endif %}
-  <li><a href="#">{{data.params.page}} of {{data.params.all_pages}}</a></li>
-
-{% if data.params.next is not "0" %}
-  <li><a href="?page={{data.params.next}}">Next</a></li>
+{% if page.before is not 1 %}
+	<li><a href="?page={{page.before}}">Previous</a></li>
 {% endif %}
-
+	<li><a href="#">{{page.current}} of {{page.total_pages}}</a></li>
+{% if page.next is not page.total_pages %}
+	<li><a href="?page={{page.next}}">Next</a></li>
+{% endif %}
 </ul>
-
 
