@@ -589,6 +589,18 @@ class Users extends \Phalcon\Mvc\Model
         return 'users';
     }
 
+    public function initialize() {
+        $this->hasMany("id", "Setting", "id_reg");
+    }
+
+     public function afterFetch()
+    {
+        // Convert the string to an array
+        $this->profile = json_decode($this->profile);
+
+    }
+
+
     /**
      * Allows to query a set of records that match the specified conditions
      *

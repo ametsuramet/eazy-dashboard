@@ -31,6 +31,7 @@ class LoginController extends \Phalcon\Mvc\Controller
 		$this->assets
 			->addJs('js/jquery/jquery-2.1.4.min.js')
 			->addJs('js/bootstrap/bootstrap.min.js')
+			->addJs('js/summernote.min.js')
 			->addJs('js/script.js');
 
 

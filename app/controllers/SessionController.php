@@ -9,7 +9,20 @@ class SessionController extends \Phalcon\Mvc\Controller
     // }
      private function _registerSession($user)
     {
-        $this->session->set('auth',$user);
+        $web = [];
+        foreach ($user->Setting as $w) {
+            $web[] = ["id"=>$w->id,'title'=>$w->title,'url'=>$w->url];
+        }
+        $this->session->set('auth',(object) [
+            "id" => $user->id,
+            "name" => $user->name,
+            "username" => $user->username,
+            "id_reg" => $user->id_reg,
+            "web" => $web,
+            "id_web" => $user->Setting[0]->id,
+            "web_title" => $user->Setting[0]->title,
+            "web_url" => $user->Setting[0]->url,
+            ]);
     }
     public function destroyAction(){
     	$this->session->set('auth',false);

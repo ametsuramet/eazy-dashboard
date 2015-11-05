@@ -19,7 +19,7 @@
 	</tbody>
 </table>
 <ul class="pager">
-<?php if ($page->before != 1) { ?>
+<?php if ($page->current != 1) { ?>
 	<li><a href="?page=<?php echo $page->before; ?>">Previous</a></li>
 <?php } ?>
 	<li><a href="#"><?php echo $page->current; ?> of <?php echo $page->total_pages; ?></a></li>

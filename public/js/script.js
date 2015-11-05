@@ -22,3 +22,4 @@ $('.summernote').summernote({
 			matchBrackets: true
         }
 });
+

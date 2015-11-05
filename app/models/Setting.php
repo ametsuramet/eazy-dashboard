@@ -512,10 +512,27 @@ class Setting extends \Phalcon\Mvc\Model
      * @param mixed $parameters
      * @return Setting[]
      */
+    public $author ;
+
     public static function find($parameters = null)
     {
         return parent::find($parameters);
     }
+    public function initialize() {
+        $this->belongsTo("id", "Users", "id_reg");
+    
+    }
+       public function afterFetch()
+    {
+        // Convert the string to an array
+        $this->option = json_decode($this->option);
+        $this->menu = json_decode($this->menu);
+        $this->layout = json_decode($this->layout);
+        $this->frontend = json_decode($this->frontend);
+        // $this->author = ($this->author);
+
+    }
+
 
     /**
      * Allows to query the first record that match the specified conditions

@@ -5,7 +5,9 @@ class PostController extends MasterController
 
     public function articleAction()
     {
-    	$posts = Post::find(["type = 'post'","id_reg" => $this->auth->id_reg]);
+        $posts = Post::find([   
+                'type = "post" AND id_web = "'.$this->auth->id_web.'"'
+            ]);
         $paginator   = new PaginatorModel(
             array(
                 "data"  => $posts,
@@ -15,13 +17,19 @@ class PostController extends MasterController
         );
 
         $page = $paginator->getPaginate();
-    	$this->view->setVar("page",$page);
+        $this->view->setVar("page",$page);
     }
     public function editAction()
     {
+        $categories = PostCategory::find([   
+                'type = "post" AND id_web = "'.$this->auth->id_web.'"'
+            ]);
+
     	// print_r($this->params);
     	$post = Post::findFirst($this->params->id);
     	$this->view->setVar("data",$post);
+        $this->view->setVar("categories", $categories);
+
 
     }
 }

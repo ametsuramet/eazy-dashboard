@@ -19,7 +19,7 @@
 	</tbody>
 </table>
 <ul class="pager">
-{% if page.before is not 1 %}
+{% if page.current is not 1 %}
 	<li><a href="?page={{page.before}}">Previous</a></li>
 {% endif %}
 	<li><a href="#">{{page.current}} of {{page.total_pages}}</a></li>

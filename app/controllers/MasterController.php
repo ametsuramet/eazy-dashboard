@@ -5,9 +5,9 @@ class MasterController extends \Phalcon\Mvc\Controller
 
 	protected $_isJsonResponse = false;
 
-	
 
-    public function onConstruct(){
+
+    public function initialize(){
     	$this->params = (object) [];
     	$auth = $this->session->get('auth');
     	if (!$auth) {
@@ -20,21 +20,7 @@ class MasterController extends \Phalcon\Mvc\Controller
         } else {
             $this->view->role = 'Users';
         }
-
-	 	$this->assets
-			->addCss('css/bootstrap/bootstrap.min.css')
-			->addCss('css/summernote.css')
-			->addCss('css/codemirror/codemirror.css')
-			->addCss('css/codemirror/monokai.css')
-			->addCss('css/font-awesome.min.css')
-			->addCss('css/style.css');
-		$this->assets
-			->addJs('js/jquery/jquery-2.1.4.min.js')
-			->addJs('js/bootstrap/bootstrap.min.js')
-			->addJs('js/codemirror/lib/codemirror.js')
-			->addJs('js/codemirror/mode/xml/xml.js')
-			->addJs('js/summernote.min.js')
-			->addJs('js/script.js');
+  
 
 		foreach ($this->request->get() as $key => $value) {
 			$this->params->$key = $value;
@@ -51,8 +37,37 @@ class MasterController extends \Phalcon\Mvc\Controller
 
 		$this->view->params = $this->params;
 
-		$this->auth = $this->view->auth = $this->session->get('auth');
+		$this->auth =  $this->session->get('auth');
+		$this->view->auth = $this->auth;
 
+		$authors = Users::find(['level = 16 and id_reg='.$this->auth->id_reg])->toArray();
+		$list_author = [];
+		foreach ($authors as  $author) {
+			if($this->auth->id != $author->id)
+				$list_author[] =  [
+			            "id" => $author['id'],
+			            "name" => $author['name'],
+			            "username" => $author['username'],
+			            "id_reg" => $author['id_reg']
+		           	];
+		}
+		if($this->auth->id_reg == $this->auth->id){
+			array_push($list_author,[
+			            "id" => $this->auth->id,
+            			"name" => $this->auth->name,
+            			"username" => $this->auth->username,
+            			"id_reg" => $this->auth->id_reg,
+		           	]);
+		}else{
+			$author = Users::findFirst(['id_reg='.$this->auth->id_reg])->toArray();
+			array_push($list_author,[
+						"id" => $author['id'],
+			            "name" => $author['name'],
+			            "username" => $author['username'],
+			            "id_reg" => $author['id_reg']
+		           	]);
+		}
+		$this->view->authors  = $list_author;
     }
 
     public function setJsonResponse() {

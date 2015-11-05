@@ -476,7 +476,7 @@ class Post extends \Phalcon\Mvc\Model
     {
         return 'post';
     }
-     public function initialize() {
+    public function initialize() {
         $this->belongsTo("category", "PostCategory", "id");
     }
      public function afterFetch()
