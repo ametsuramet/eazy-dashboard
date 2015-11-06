@@ -6,7 +6,7 @@ class PostController extends MasterController
     public function articleAction()
     {
         $posts = Post::find([   
-                'type = "post" AND id_web = "'.$this->auth->id_web.'"'
+                'type = "post" AND id_web = "'.$this->auth->id_web.'" order by id desc'
             ]);
         $paginator   = new PaginatorModel(
             array(

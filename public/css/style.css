@@ -1,3 +1,48 @@
 .closable{
 	cursor: pointer
 }
+.images-browser{
+	background: darkcyan;
+	border-radius: 4px;
+	overflow: auto;
+}
+.images-browser .modal-title{
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #fff;
+}
+.images-item{
+	width: 189px;
+	opacity: 0.6;
+	cursor: pointer;
+	float:left;
+
+}
+.images-item:hover{
+	opacity: 1;
+}
+.images-nav{
+	width: 189px;
+	height: 189px;
+	opacity: 0.6;
+	float:left;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 2.4em;
+	cursor: pointer;
+	padding-top: 67px;
+	
+}
+.images-nav:hover{
+	opacity: 1;
+}
+.images-nav.before{
+	background: crimson;
+}
+.images-nav.next{
+	background: steelblue;
+}

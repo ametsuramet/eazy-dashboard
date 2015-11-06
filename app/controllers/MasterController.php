@@ -77,5 +77,33 @@ class MasterController extends \Phalcon\Mvc\Controller
 		$this->response->setContentType('application/json', 'UTF-8');
 	}
 
+	public function createThumbnail($path){
+		$file = str_replace(APP_PATH.'/public/images/'.$this->auth->id_reg, "", $path);
+    	$crop_dir = APP_PATH.'/public/images/crops/'.$this->auth->id_reg.'/200-200';
+
+		if (!file_exists($crop_dir.'/'.$file))
+		{
+			$new_file = $crop_dir.'/'.$file;
+			// echo $crop_dir.'/'.$file;
+			$raw = new Phalcon\Image\Adapter\GD($path);
+			$realWidth = $raw->getWidth();
+	    	$realHeight = $raw->getHeight();
+			$cropSize = $realWidth;
+			$offset_x = 0;
+			$offset_y = ($realHeight-$realWidth)/2;
+			if ($realWidth > $realHeight)
+			{
+				$cropSize = $realHeight;
+				$offset_x = ($realWidth-$realHeight)/2;
+				$offset_y = 0;
+			}
+
+
+			$handle = fopen($new_file, 'w') or die('Cannot open file:  '.$file);
+			$raw->crop($cropSize, $cropSize,$offset_x,$offset_y)->resize(200, 200);
+			fwrite($handle, $raw->render());
+		}
+	}
+
 }
 

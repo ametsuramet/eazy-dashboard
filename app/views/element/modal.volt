@@ -26,3 +26,16 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="images-browser">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			
+			<div class="modal-body images-browser">
+				<h2 class="modal-title">Images Browser</h2>
+				<div class="images-browser-wrapper"></div>
+			</div>
+			
+		</div>
+	</div>
+</div>

@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="{{url.getBaseUri()}}css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="{{url.getBaseUri()}}css/style.css" />
 
-
+        <base href="{{url.getBaseUri()}}"></base>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Phalcon PHP Framework</title>
     </head>
